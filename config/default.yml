@@ -1,0 +1,11 @@
+server:
+  PORT: 8000
+
+db:
+  type: 'postgres'
+  host: 'localhost'
+  port: 5432
+  database: 'test_db'
+  username: 'postgres'
+  password: '124578'
+  synchronize: true
