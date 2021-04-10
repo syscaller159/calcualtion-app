@@ -25,22 +25,20 @@ export class CalculatorModuleService {
 
   private async runCalculation(input: CalculateParamsDto, calculationId) {
     const { x, y, operator } = input;
-    const xInt = Number(x)
-    const yInt = Number(y)
     let result;
 
     switch (operator) {
       case OperatorEnum.addition:
-        result =  xInt + yInt;
+        result =  x + y;
         break;
       case OperatorEnum.subtraction:
-        result = xInt - yInt;
+        result = x - y;
         break;
       case OperatorEnum.multiplication:
-        result = xInt * yInt;
+        result = x * y;
         break;
       case OperatorEnum.division:
-        result = xInt / yInt;
+        result = x / y;
         break;
       default:
         throw new Error('error: unknown operator');
@@ -68,7 +66,7 @@ export class CalculatorModuleService {
     return this.calculationRepository.find();
   }
 
-  getCalculationResult(id: number) {
-    return this.calculationJobs[id];
+  async getCalculationResult(id: number) {
+    return this.calculationRepository.findOne({ id });
   }
 }

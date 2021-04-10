@@ -1,6 +1,8 @@
-import {Body, Controller, Get, Post, Query} from '@nestjs/common';
+import { Body, Controller, Get, Post } from '@nestjs/common';
 import { CalculateParamsDto } from './dto/calculate-params.dto';
 import { CalculatorModuleService } from './calculator-module.service';
+import { GetCalculationIdDto } from "./dto/get-calculation-id.dto";
+import { CalculationEntity } from "./entities/calculation.entity";
 
 @Controller('calculator')
 export class CalculatorModuleController {
@@ -15,12 +17,12 @@ export class CalculatorModuleController {
   }
 
   @Get()
-  async getCalculationJobId(@Query() params): Promise<number> {
+  async getCalculationId(@Body() params: GetCalculationIdDto): Promise<CalculationEntity> {
     return this.calculatorModuleService.getCalculationResult(params.id);
   }
 
   @Get('list')
-  getCalculationJobList() {
+  async getCalculationJobList() {
     return this.calculatorModuleService.getCalculationList();
   }
 }
