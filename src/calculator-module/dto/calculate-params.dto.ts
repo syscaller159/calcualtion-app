@@ -1,4 +1,4 @@
-import { IsNotEmpty, MinLength, MaxLength, IsNumber, IsEnum } from 'class-validator';
+import { IsNotEmpty, IsNumber, IsEnum, } from 'class-validator';
 import { Type } from 'class-transformer';
 
 export enum OperatorEnum {
@@ -19,9 +19,6 @@ export class CalculateParamsDto {
   @IsNumber()
   y: number;
 
-  @IsNotEmpty()
-  @MinLength(1)
-  @MaxLength(1)
   @IsEnum(OperatorEnum)
   operator: OperatorEnum;
 }

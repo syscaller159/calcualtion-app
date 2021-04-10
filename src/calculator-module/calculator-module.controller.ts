@@ -1,4 +1,4 @@
-import { Controller, Get, Post, Query } from '@nestjs/common';
+import {Body, Controller, Get, Post, Query} from '@nestjs/common';
 import { CalculateParamsDto } from './dto/calculate-params.dto';
 import { CalculatorModuleService } from './calculator-module.service';
 
@@ -10,7 +10,7 @@ export class CalculatorModuleController {
   ) {}
 
   @Post()
-  async calculate(@Query() params: CalculateParamsDto): Promise<number> {
+  async calculate(@Body() params: CalculateParamsDto): Promise<number> {
     return this.calculatorModuleService.createCalculationProcess(params);
   }
 
