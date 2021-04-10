@@ -16,11 +16,11 @@ export class CalculatorModuleService {
   async createCalculationProcess(input: CalculateParamsDto) {
     const calculation = new CalculationEntity();
     const saved = await this.calculationRepository.save(calculation);
-    const calculationJobId = saved.id;
+    const calculationId = saved.id;
 
-    this.runCalculation(input, calculationJobId);
+    this.runCalculation(input, calculationId);
 
-    return calculationJobId;
+    return calculationId;
   }
 
   private async runCalculation(input: CalculateParamsDto, calculationId) {
@@ -66,7 +66,8 @@ export class CalculatorModuleService {
     return this.calculationRepository.find();
   }
 
-  async getCalculationResult(id: number) {
-    return this.calculationRepository.findOne({ id });
+  async getCalculationResult(id: number): Promise<string> {
+    const calculation = await this.calculationRepository.findOneOrFail({ id });
+    return calculation.result
   }
 }
