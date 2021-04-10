@@ -14,6 +14,7 @@ CREATE DATABASE test_db OWNER postgres_user;
 ```
 ## Install and setup nodejs app:
 1) Clone repository
+
 2) Run commands:
 ```
 $ cd calculation-app
